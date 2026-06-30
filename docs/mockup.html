@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HostCompliant — UI Mockup</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f1f5f9;color:#0f172a;}
+
+/* Navigator */
+#nav{position:fixed;top:0;left:0;right:0;z-index:9999;background:#1e293b;padding:10px 16px;display:flex;gap:6px;align-items:center;flex-wrap:wrap;box-shadow:0 2px 8px rgba(0,0,0,.3);}
+#nav .lbl{color:#64748b;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;margin-right:4px;white-space:nowrap;}
+#nav button{padding:5px 12px;border:1px solid #334155;border-radius:5px;background:transparent;color:#94a3b8;font-size:12px;cursor:pointer;transition:all .15s;white-space:nowrap;}
+#nav button:hover{background:#334155;color:#e2e8f0;}
+#nav button.on{background:#2563eb;border-color:#2563eb;color:#fff;font-weight:600;}
+
+.page{display:none;margin-top:46px;}
+.page.on{display:block;}
+
+/* ── SHARED COMPONENTS ── */
+.btn{display:inline-flex;align-items:center;gap:6px;padding:9px 18px;border-radius:7px;font-size:14px;font-weight:600;cursor:pointer;border:none;transition:all .15s;}
+.btn-primary{background:#2563eb;color:#fff;} .btn-primary:hover{background:#1d4ed8;}
+.btn-outline{background:#fff;color:#374151;border:1.5px solid #d1d5db;} .btn-outline:hover{background:#f9fafb;}
+.btn-sm{padding:6px 12px;font-size:13px;}
+.badge{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:20px;font-size:12px;font-weight:600;}
+.badge-red{background:#fee2e2;color:#dc2626;}
+.badge-orange{background:#ffedd5;color:#ea580c;}
+.badge-yellow{background:#fef9c3;color:#a16207;}
+.badge-green{background:#dcfce7;color:#16a34a;}
+.badge-blue{background:#dbeafe;color:#1d4ed8;}
+.badge-gray{background:#f1f5f9;color:#64748b;}
+.card{background:#fff;border-radius:12px;border:1px solid #e2e8f0;padding:20px;}
+.tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700;letter-spacing:.03em;}
+
+/* ══════════════════════════════════════════════
+   PAGE 1 — LANDING
+══════════════════════════════════════════════ */
+#p-landing{background:#fff;}
+.lp-nav{display:flex;align-items:center;justify-content:space-between;padding:16px 40px;border-bottom:1px solid #f1f5f9;position:sticky;top:46px;background:#fff;z-index:100;}
+.logo{font-size:20px;font-weight:800;color:#0f172a;}
+.logo span{color:#2563eb;}
+.lp-nav-links{display:flex;gap:24px;align-items:center;}
+.lp-nav-links a{font-size:14px;color:#64748b;text-decoration:none;cursor:pointer;}
+.lp-nav-links a:hover{color:#0f172a;}
+
+.hero{background:linear-gradient(135deg,#eff6ff 0%,#f0fdf4 100%);padding:72px 40px 60px;text-align:center;}
+.hero h1{font-size:46px;font-weight:800;color:#0f172a;line-height:1.15;margin-bottom:16px;}
+.hero h1 span{color:#2563eb;}
+.hero p{font-size:18px;color:#475569;max-width:580px;margin:0 auto 36px;line-height:1.6;}
+.search-bar{display:flex;max-width:480px;margin:0 auto;background:#fff;border:2px solid #e2e8f0;border-radius:10px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.08);}
+.search-bar input{flex:1;padding:14px 18px;border:none;outline:none;font-size:15px;color:#374151;}
+.search-bar button{padding:12px 22px;background:#2563eb;color:#fff;border:none;font-size:14px;font-weight:700;cursor:pointer;}
+.hero-note{margin-top:14px;font-size:13px;color:#94a3b8;}
+
+.city-strip{padding:48px 40px;text-align:center;}
+.city-strip h2{font-size:22px;font-weight:700;color:#1e293b;margin-bottom:28px;}
+.city-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;max-width:900px;margin:0 auto;}
+.city-card{background:#fff;border:1.5px solid #e2e8f0;border-radius:10px;padding:18px 14px;text-align:center;cursor:pointer;transition:all .2s;}
+.city-card:hover{border-color:#2563eb;box-shadow:0 4px 16px rgba(37,99,235,.12);transform:translateY(-2px);}
+.city-card .flag{font-size:28px;margin-bottom:8px;}
+.city-card .cname{font-size:14px;font-weight:700;color:#1e293b;}
+.city-card .cstat{font-size:11px;margin-top:4px;}
+.city-card .cfine{font-size:11px;color:#64748b;margin-top:6px;}
+
+.how-it-works{background:#f8fafc;padding:56px 40px;}
+.how-it-works h2{text-align:center;font-size:26px;font-weight:800;margin-bottom:40px;}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;max-width:860px;margin:0 auto;}
+.step{text-align:center;padding:28px 20px;}
+.step-num{width:44px;height:44px;background:#2563eb;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;margin:0 auto 16px;}
+.step h3{font-size:16px;font-weight:700;margin-bottom:8px;}
+.step p{font-size:14px;color:#64748b;line-height:1.5;}
+
+.social-proof{padding:48px 40px;text-align:center;background:#fff;}
+.social-proof h2{font-size:22px;font-weight:700;color:#1e293b;margin-bottom:12px;}
+.social-proof p{color:#64748b;margin-bottom:28px;}
+.stat-row{display:flex;justify-content:center;gap:48px;}
+.stat{text-align:center;}
+.stat .num{font-size:36px;font-weight:800;color:#2563eb;}
+.stat .desc{font-size:13px;color:#64748b;margin-top:4px;}
+
+.lp-pricing-tease{background:#f8fafc;padding:48px 40px;text-align:center;}
+.lp-pricing-tease h2{font-size:24px;font-weight:800;margin-bottom:8px;}
+.lp-pricing-tease p{color:#64748b;margin-bottom:28px;}
+.price-cards-preview{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;}
+.pcp{background:#fff;border:1.5px solid #e2e8f0;border-radius:10px;padding:20px 24px;min-width:160px;text-align:center;}
+.pcp.featured{border-color:#2563eb;box-shadow:0 4px 16px rgba(37,99,235,.15);}
+.pcp .ptier{font-size:13px;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:.05em;}
+.pcp .pprice{font-size:28px;font-weight:800;margin:8px 0 4px;}
+.pcp .pprice span{font-size:14px;font-weight:500;color:#64748b;}
+.pcp .pdesc{font-size:12px;color:#94a3b8;}
+
+.lp-footer-cta{background:#1e293b;padding:56px 40px;text-align:center;color:#fff;}
+.lp-footer-cta h2{font-size:28px;font-weight:800;margin-bottom:12px;}
+.lp-footer-cta p{color:#94a3b8;margin-bottom:28px;}
+
+/* ══════════════════════════════════════════════
+   PAGE 2 — CITY (BARCELONA)
+══════════════════════════════════════════════ */
+#p-city{background:#f8fafc;}
+.city-hero{background:linear-gradient(135deg,#fef3c7,#fde68a);padding:40px;}
+.city-hero-inner{max-width:860px;margin:0 auto;}
+.city-breadcrumb{font-size:13px;color:#92400e;margin-bottom:16px;}
+.city-breadcrumb a{color:#92400e;cursor:pointer;}
+.city-hero h1{font-size:34px;font-weight:800;color:#78350f;margin-bottom:10px;}
+.city-meta{display:flex;gap:16px;align-items:center;flex-wrap:wrap;margin-bottom:16px;}
+.city-hero p{font-size:15px;color:#92400e;line-height:1.5;max-width:620px;}
+.last-review{font-size:12px;color:#b45309;margin-top:8px;}
+
+.city-content{max-width:860px;margin:0 auto;padding:32px 40px;}
+.key-facts{background:#fff3cd;border:1.5px solid #fde68a;border-radius:10px;padding:20px 24px;margin-bottom:28px;}
+.key-facts h3{font-size:14px;font-weight:700;color:#78350f;margin-bottom:12px;text-transform:uppercase;letter-spacing:.05em;}
+.key-facts ul{list-style:none;display:flex;flex-direction:column;gap:6px;}
+.key-facts li{font-size:14px;color:#92400e;display:flex;align-items:flex-start;gap:8px;}
+.key-facts li::before{content:"⚡";flex-shrink:0;}
+
+.compliance-table{background:#fff;border:1px solid #e2e8f0;border-radius:10px;overflow:hidden;margin-bottom:28px;}
+.ct-header{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;padding:12px 20px;background:#f8fafc;border-bottom:1px solid #e2e8f0;font-size:12px;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:.05em;}
+.ct-row{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;padding:16px 20px;border-bottom:1px solid #f1f5f9;align-items:center;cursor:pointer;transition:background .1s;}
+.ct-row:last-child{border-bottom:none;}
+.ct-row:hover{background:#f8fafc;}
+.ct-title{font-size:14px;font-weight:600;color:#1e293b;}
+.ct-subtitle{font-size:12px;color:#64748b;margin-top:2px;}
+.ct-diff{display:flex;gap:3px;}
+.ct-diff-dot{width:8px;height:8px;border-radius:50%;}
+
+.city-cta-bar{background:#fff;border:1.5px solid #e2e8f0;border-radius:10px;padding:24px;display:flex;align-items:center;justify-content:space-between;gap:20px;}
+.city-cta-bar div h3{font-size:16px;font-weight:700;}
+.city-cta-bar div p{font-size:13px;color:#64748b;margin-top:4px;}
+
+/* ══════════════════════════════════════════════
+   PAGE 3 — DASHBOARD
+══════════════════════════════════════════════ */
+#p-dashboard{background:#f8fafc;}
+.app-shell{display:flex;min-height:calc(100vh - 46px);}
+
+.sidebar{width:220px;background:#1e293b;padding:20px 0;flex-shrink:0;position:sticky;top:46px;height:calc(100vh - 46px);}
+.sidebar-logo{padding:0 20px 20px;border-bottom:1px solid #334155;margin-bottom:16px;}
+.sidebar-logo .lname{font-size:16px;font-weight:800;color:#fff;}
+.sidebar-logo .lname span{color:#3b82f6;}
+.sidebar-user{padding:0 20px 16px;border-bottom:1px solid #334155;margin-bottom:8px;}
+.sidebar-user .uname{font-size:13px;font-weight:600;color:#e2e8f0;}
+.sidebar-user .uplan{font-size:11px;color:#64748b;margin-top:2px;}
+.nav-item{display:flex;align-items:center;gap:10px;padding:10px 20px;font-size:14px;color:#94a3b8;cursor:pointer;transition:all .15s;border-left:3px solid transparent;}
+.nav-item:hover{background:#334155;color:#e2e8f0;}
+.nav-item.active{background:#1e3a8a;color:#93c5fd;border-left-color:#3b82f6;}
+.nav-item .icon{width:18px;text-align:center;font-size:16px;}
+.sidebar-bottom{margin-top:auto;padding:16px 20px;border-top:1px solid #334155;}
+.upgrade-box{background:#1e3a8a;border-radius:8px;padding:14px;text-align:center;}
+.upgrade-box p{font-size:12px;color:#93c5fd;margin-bottom:8px;}
+.upgrade-box button{width:100%;padding:7px;background:#2563eb;color:#fff;border:none;border-radius:6px;font-size:12px;font-weight:700;cursor:pointer;}
+
+.main-content{flex:1;padding:28px;overflow-y:auto;}
+.page-title{font-size:22px;font-weight:800;color:#1e293b;margin-bottom:4px;}
+.page-subtitle{font-size:14px;color:#64748b;margin-bottom:24px;}
+
+.stat-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:24px;}
+.stat-card{background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:16px 18px;}
+.stat-card .sc-label{font-size:12px;font-weight:600;color:#64748b;text-transform:uppercase;letter-spacing:.04em;}
+.stat-card .sc-value{font-size:28px;font-weight:800;margin:6px 0 4px;}
+.stat-card .sc-sub{font-size:12px;color:#94a3b8;}
+.sc-blue{color:#2563eb;} .sc-red{color:#dc2626;} .sc-green{color:#16a34a;} .sc-amber{color:#d97706;}
+
+.dash-grid{display:grid;grid-template-columns:1fr 340px;gap:16px;}
+.section-title{font-size:14px;font-weight:700;color:#1e293b;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+
+.overdue-item{background:#fff;border:1px solid #fecaca;border-left:4px solid #dc2626;border-radius:8px;padding:14px 16px;margin-bottom:8px;display:flex;align-items:center;gap:14px;}
+.oi-icon{font-size:20px;flex-shrink:0;}
+.oi-body{flex:1;}
+.oi-prop{font-size:12px;color:#64748b;}
+.oi-title{font-size:14px;font-weight:600;color:#1e293b;}
+.oi-days{font-size:12px;color:#dc2626;font-weight:600;margin-top:2px;}
+.oi-action button{padding:6px 12px;background:#fee2e2;color:#dc2626;border:1px solid #fca5a5;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;}
+
+.deadline-item{background:#fff;border:1px solid #e2e8f0;border-radius:8px;padding:12px 14px;margin-bottom:8px;display:flex;align-items:center;justify-content:space-between;}
+.di-left{flex:1;}
+.di-prop{font-size:11px;color:#94a3b8;}
+.di-title{font-size:13px;font-weight:600;color:#1e293b;margin:2px 0;}
+.di-date{font-size:12px;color:#64748b;}
+.di-right .days{font-size:13px;font-weight:700;}
+
+.alert-item{background:#fff;border:1px solid #e2e8f0;border-radius:8px;padding:14px;margin-bottom:8px;cursor:pointer;transition:all .15s;}
+.alert-item:hover{border-color:#2563eb;}
+.alert-item .ai-top{display:flex;align-items:center;gap:8px;margin-bottom:6px;}
+.alert-item .ai-title{font-size:13px;font-weight:600;color:#1e293b;}
+.alert-item .ai-summary{font-size:12px;color:#64748b;line-height:1.4;}
+
+.property-card{background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:16px;cursor:pointer;transition:all .2s;}
+.property-card:hover{border-color:#2563eb;box-shadow:0 4px 12px rgba(37,99,235,.1);}
+.pc-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
+.pc-name{font-size:15px;font-weight:700;color:#1e293b;}
+.pc-city{font-size:12px;color:#64748b;margin-top:2px;}
+.pc-progress{margin-bottom:10px;}
+.pc-progress-label{display:flex;justify-content:space-between;font-size:12px;color:#64748b;margin-bottom:4px;}
+.progress-bar{height:6px;background:#f1f5f9;border-radius:3px;overflow:hidden;}
+.progress-fill{height:100%;background:#16a34a;border-radius:3px;}
+.progress-fill.warn{background:#f59e0b;}
+.pc-footer{display:flex;gap:8px;flex-wrap:wrap;}
+
+/* ══════════════════════════════════════════════
+   PAGE 4 — COMPLIANCE CHECKLIST
+══════════════════════════════════════════════ */
+#p-checklist{background:#f8fafc;}
+.checklist-header{background:#fff;border-bottom:1px solid #e2e8f0;padding:20px 28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+.ch-left h2{font-size:20px;font-weight:800;color:#1e293b;}
+.ch-left .ch-meta{font-size:13px;color:#64748b;margin-top:2px;display:flex;align-items:center;gap:12px;}
+.ch-right{display:flex;gap:10px;align-items:center;}
+
+.score-ring-wrap{display:flex;align-items:center;gap:16px;}
+.score-ring{width:72px;height:72px;position:relative;}
+.score-ring svg{transform:rotate(-90deg);}
+.score-ring .pct{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:16px;font-weight:800;color:#1e293b;}
+
+.filter-tabs{display:flex;gap:2px;background:#f1f5f9;border-radius:8px;padding:4px;margin:20px 28px 0;}
+.ft{padding:7px 16px;border-radius:6px;font-size:13px;font-weight:600;color:#64748b;cursor:pointer;transition:all .15s;}
+.ft.on{background:#fff;color:#1e293b;box-shadow:0 1px 3px rgba(0,0,0,.1);}
+
+.checklist-body{padding:16px 28px 40px;}
+.cat-section{margin-bottom:20px;}
+.cat-label{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;}
+
+.ci-card{background:#fff;border:1px solid #e2e8f0;border-radius:10px;overflow:hidden;margin-bottom:8px;}
+.ci-card.overdue{border-color:#fca5a5;border-left:4px solid #dc2626;}
+.ci-card.done{border-left:4px solid #16a34a;}
+.ci-card.soon{border-left:4px solid #f59e0b;}
+.ci-card.pending{border-left:4px solid #e2e8f0;}
+.ci-main{display:flex;align-items:center;gap:14px;padding:14px 16px;cursor:pointer;}
+.ci-status-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0;}
+.sd-done{background:#16a34a;} .sd-overdue{background:#dc2626;} .sd-soon{background:#f59e0b;} .sd-pending{background:#d1d5db;}
+.ci-body{flex:1;}
+.ci-title{font-size:14px;font-weight:700;color:#1e293b;}
+.ci-desc{font-size:12px;color:#64748b;margin-top:2px;}
+.ci-right{display:flex;align-items:center;gap:10px;}
+.ci-deadline{text-align:right;}
+.ci-dl-label{font-size:11px;color:#64748b;}
+.ci-dl-date{font-size:12px;font-weight:700;}
+.ci-arrow{color:#94a3b8;font-size:16px;transition:transform .2s;}
+.ci-card.open .ci-arrow{transform:rotate(90deg);}
+
+.ci-expanded{background:#f8fafc;border-top:1px solid #e2e8f0;padding:16px 20px;display:none;}
+.ci-card.open .ci-expanded{display:block;}
+.ci-exp-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.ci-exp-section h4{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#64748b;margin-bottom:8px;}
+.ci-exp-section p{font-size:13px;color:#374151;line-height:1.5;}
+.ci-steps{list-style:none;display:flex;flex-direction:column;gap:6px;margin-top:4px;}
+.ci-steps li{font-size:13px;color:#374151;display:flex;gap:8px;}
+.ci-steps li::before{content:attr(data-n);background:#2563eb;color:#fff;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;flex-shrink:0;margin-top:1px;}
+.ci-exp-actions{display:flex;gap:8px;margin-top:14px;padding-top:14px;border-top:1px solid #e2e8f0;}
+.ci-exp-actions a{font-size:12px;color:#2563eb;cursor:pointer;text-decoration:underline;}
+
+.mark-done-btn{padding:7px 14px;background:#dcfce7;color:#16a34a;border:1.5px solid #86efac;border-radius:7px;font-size:12px;font-weight:700;cursor:pointer;}
+.mark-done-btn:hover{background:#bbf7d0;}
+.in-progress-btn{padding:7px 14px;background:#fef9c3;color:#a16207;border:1.5px solid #fde047;border-radius:7px;font-size:12px;font-weight:700;cursor:pointer;}
+
+/* ══════════════════════════════════════════════
+   PAGE 5 — ADD PROPERTY
+══════════════════════════════════════════════ */
+#p-addprop{background:#f8fafc;}
+.addprop-wrap{max-width:560px;margin:0 auto;padding:36px 20px;}
+.steps-indicator{display:flex;align-items:center;margin-bottom:32px;}
+.si-step{display:flex;align-items:center;gap:8px;}
+.si-circle{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;border:2px solid #d1d5db;color:#94a3b8;background:#fff;}
+.si-circle.done{background:#16a34a;border-color:#16a34a;color:#fff;}
+.si-circle.active{background:#2563eb;border-color:#2563eb;color:#fff;}
+.si-label{font-size:13px;font-weight:600;color:#94a3b8;}
+.si-label.active{color:#1e293b;}
+.si-sep{flex:1;height:2px;background:#e2e8f0;margin:0 10px;}
+.si-sep.done{background:#16a34a;}
+
+.form-card{background:#fff;border:1px solid #e2e8f0;border-radius:14px;padding:28px;}
+.form-card h2{font-size:20px;font-weight:800;margin-bottom:4px;}
+.form-card .fc-sub{font-size:14px;color:#64748b;margin-bottom:24px;}
+.field{margin-bottom:18px;}
+.field label{display:block;font-size:13px;font-weight:700;color:#374151;margin-bottom:6px;}
+.field input,.field select{width:100%;padding:10px 14px;border:1.5px solid #d1d5db;border-radius:8px;font-size:14px;color:#1e293b;background:#fff;outline:none;transition:border-color .15s;}
+.field input:focus,.field select:focus{border-color:#2563eb;box-shadow:0 0 0 3px rgba(37,99,235,.1);}
+.type-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.type-option{border:2px solid #e2e8f0;border-radius:9px;padding:14px;cursor:pointer;transition:all .15s;text-align:center;}
+.type-option:hover{border-color:#93c5fd;}
+.type-option.selected{border-color:#2563eb;background:#eff6ff;}
+.type-option .to-icon{font-size:24px;margin-bottom:6px;}
+.type-option .to-label{font-size:13px;font-weight:700;color:#1e293b;}
+.type-option .to-desc{font-size:11px;color:#64748b;margin-top:2px;}
+
+.platform-grid{display:flex;gap:8px;flex-wrap:wrap;}
+.platform-opt{border:1.5px solid #e2e8f0;border-radius:7px;padding:8px 14px;cursor:pointer;font-size:13px;font-weight:600;color:#374151;transition:all .15s;}
+.platform-opt.sel{border-color:#2563eb;background:#eff6ff;color:#1d4ed8;}
+
+.preview-box{background:#f0fdf4;border:1.5px solid #86efac;border-radius:10px;padding:16px;margin-bottom:20px;}
+.preview-box h4{font-size:13px;font-weight:700;color:#15803d;margin-bottom:10px;}
+.preview-item{display:flex;align-items:center;gap:8px;font-size:13px;color:#166534;margin-bottom:5px;}
+
+/* ══════════════════════════════════════════════
+   PAGE 6 — PRICING
+══════════════════════════════════════════════ */
+#p-pricing{background:#f8fafc;}
+.pricing-hero{text-align:center;padding:56px 20px 40px;}
+.pricing-hero h1{font-size:36px;font-weight:800;color:#0f172a;margin-bottom:10px;}
+.pricing-hero p{font-size:17px;color:#64748b;max-width:520px;margin:0 auto 28px;}
+.billing-toggle{display:inline-flex;background:#e2e8f0;border-radius:8px;padding:4px;}
+.bt-opt{padding:8px 18px;border-radius:6px;font-size:14px;font-weight:600;cursor:pointer;color:#64748b;}
+.bt-opt.on{background:#fff;color:#1e293b;box-shadow:0 1px 3px rgba(0,0,0,.1);}
+.save-badge{display:inline-block;margin-left:8px;background:#dcfce7;color:#16a34a;font-size:11px;font-weight:700;padding:2px 7px;border-radius:20px;}
+
+.pricing-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;max-width:980px;margin:0 auto;padding:0 20px 60px;}
+.pc-wrap{position:relative;}
+.popular-label{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:#2563eb;color:#fff;font-size:11px;font-weight:700;padding:3px 12px;border-radius:20px;white-space:nowrap;}
+.price-card{background:#fff;border:1.5px solid #e2e8f0;border-radius:14px;padding:24px;height:100%;}
+.price-card.featured{border-color:#2563eb;box-shadow:0 8px 30px rgba(37,99,235,.15);}
+.pc-tier{font-size:12px;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;}
+.pc-price{display:flex;align-items:baseline;gap:3px;margin-bottom:4px;}
+.pc-price .amount{font-size:36px;font-weight:800;color:#0f172a;}
+.pc-price .per{font-size:14px;color:#94a3b8;}
+.pc-tagline{font-size:13px;color:#64748b;margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid #f1f5f9;}
+.feature-list{list-style:none;display:flex;flex-direction:column;gap:9px;margin-bottom:24px;}
+.feature-list li{font-size:13px;color:#374151;display:flex;align-items:flex-start;gap:8px;}
+.feature-list li .fck{color:#16a34a;font-weight:700;flex-shrink:0;}
+.feature-list li .fx{color:#d1d5db;flex-shrink:0;}
+.pc-cta{width:100%;padding:11px;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;border:none;}
+.pc-cta.primary{background:#2563eb;color:#fff;}
+.pc-cta.outline{background:#fff;color:#374151;border:1.5px solid #d1d5db;}
+
+/* ══════════════════════════════════════════════
+   MODAL
+══════════════════════════════════════════════ */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:10000;align-items:center;justify-content:center;}
+.modal-overlay.show{display:flex;}
+.modal{background:#fff;border-radius:14px;padding:28px;width:440px;max-width:95vw;box-shadow:0 20px 60px rgba(0,0,0,.3);}
+.modal h3{font-size:18px;font-weight:800;margin-bottom:4px;}
+.modal .msub{font-size:13px;color:#64748b;margin-bottom:20px;}
+.modal .field{margin-bottom:14px;}
+.modal-actions{display:flex;gap:10px;margin-top:20px;justify-content:flex-end;}
+
+/* Misc */
+.divider{height:1px;background:#f1f5f9;margin:24px 0;}
+</style>
+</head>
+<body>
+
+<!-- ── NAVIGATOR ── -->
+<div id="nav">
+  <span class="lbl">HostCompliant</span>
+  <button class="on" onclick="show('p-landing',this)">🏠 Landing</button>
+  <button onclick="show('p-city',this)">🏙 City Page</button>
+  <button onclick="show('p-dashboard',this)">📊 Dashboard</button>
+  <button onclick="show('p-checklist',this)">✅ Checklist</button>
+  <button onclick="show('p-addprop',this)">➕ Add Property</button>
+  <button onclick="show('p-pricing',this)">💳 Pricing</button>
+</div>
+
+<!-- ═══════════════════════════════
+     PAGE 1: LANDING
+═══════════════════════════════ -->
+<div id="p-landing" class="page on">
+  <nav class="lp-nav">
+    <div class="logo">Host<span>Compliant</span></div>
+    <div class="lp-nav-links">
+      <a onclick="show('p-city',null)">Cities</a>
+      <a onclick="show('p-pricing',null)">Pricing</a>
+      <a>Blog</a>
+      <button class="btn btn-outline btn-sm">Log in</button>
+      <button class="btn btn-primary btn-sm" onclick="show('p-addprop',null)">Get started free →</button>
+    </div>
+  </nav>
+
+  <div class="hero">
+    <h1>Stop guessing.<br>Stay <span>legal</span> on Airbnb.</h1>
+    <p>EU cities are banning unregistered short-term rentals and fining hosts up to €90,000. HostCompliant tells you exactly what you need — and reminds you before every deadline.</p>
+    <div class="search-bar">
+      <input type="text" placeholder="Search your city (Paris, Barcelona, Amsterdam…)">
+      <button onclick="show('p-city',null)">Check my city →</button>
+    </div>
+    <div class="hero-note">✓ Free to start &nbsp;·&nbsp; ✓ No credit card &nbsp;·&nbsp; ✓ 5 cities covered</div>
+  </div>
+
+  <div class="city-strip">
+    <h2>Pick your city and see what you need</h2>
+    <div class="city-grid">
+      <div class="city-card" onclick="show('p-city',null)">
+        <div class="flag">🇫🇷</div>
+        <div class="cname">Paris</div>
+        <div class="cstat"><span class="badge badge-orange">120-night limit</span></div>
+        <div class="cfine">Fine up to €50,000</div>
+      </div>
+      <div class="city-card" onclick="show('p-city',null)">
+        <div class="flag">🇪🇸</div>
+        <div class="cname">Barcelona</div>
+        <div class="cstat"><span class="badge badge-red">Strict</span></div>
+        <div class="cfine">Fine up to €90,000</div>
+      </div>
+      <div class="city-card" onclick="show('p-city',null)">
+        <div class="flag">🇳🇱</div>
+        <div class="cname">Amsterdam</div>
+        <div class="cstat"><span class="badge badge-red">30-night cap</span></div>
+        <div class="cfine">Fine up to €22,500</div>
+      </div>
+      <div class="city-card" onclick="show('p-city',null)">
+        <div class="flag">🇵🇹</div>
+        <div class="cname">Lisbon</div>
+        <div class="cstat"><span class="badge badge-yellow">AL Required</span></div>
+        <div class="cfine">Fine up to €40,000</div>
+      </div>
+      <div class="city-card" onclick="show('p-city',null)">
+        <div class="flag">🇮🇹</div>
+        <div class="cname">Rome</div>
+        <div class="cstat"><span class="badge badge-orange">CIN Code</span></div>
+        <div class="cfine">Fine up to €8,000</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="how-it-works">
+    <h2>How it works</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Add your property</h3>
+        <p>Tell us your city and property type. We generate a personalized compliance checklist in 30 seconds.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>Track your status</h3>
+        <p>Mark items done as you complete them. Upload your permits and licenses to keep everything in one place.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>Get alerted early</h3>
+        <p>Email reminders before every deadline. Instant alerts when your city changes its rules.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="social-proof">
+    <h2>The numbers you should know</h2>
+    <p>EU cities are moving fast. Hosts who aren't ready face serious fines.</p>
+    <div class="stat-row">
+      <div class="stat"><div class="num">€90K</div><div class="desc">Max fine in Barcelona for<br>unlicensed STR activity</div></div>
+      <div class="stat"><div class="num">600K+</div><div class="desc">Airbnb hosts in the EU<br>affected by new rules</div></div>
+      <div class="stat"><div class="num">30</div><div class="desc">Days Amsterdam allows<br>STR per year (no permit)</div></div>
+      <div class="stat"><div class="num">24h</div><div class="desc">Window to register guests<br>in Barcelona after check-in</div></div>
+    </div>
+  </div>
+
+  <div class="lp-pricing-tease">
+    <h2>Simple, honest pricing</h2>
+    <p>Start free. Upgrade when you need reminders and alerts. Cancel anytime.</p>
+    <div class="price-cards-preview">
+      <div class="pcp"><div class="ptier">Free</div><div class="pprice">€0</div><div class="pdesc">1 property · No reminders</div></div>
+      <div class="pcp featured"><div class="ptier">Solo</div><div class="pprice">€9<span>/mo</span></div><div class="pdesc">1 property · Full alerts</div></div>
+      <div class="pcp"><div class="ptier">Host</div><div class="pprice">€19<span>/mo</span></div><div class="pdesc">3 properties · Full alerts</div></div>
+      <div class="pcp"><div class="ptier">Pro</div><div class="pprice">€49<span>/mo</span></div><div class="pdesc">Unlimited · PDF reports</div></div>
+    </div>
+    <br><button class="btn btn-primary" style="margin-top:20px" onclick="show('p-pricing',null)">See full pricing →</button>
+  </div>
+
+  <div class="lp-footer-cta">
+    <h2>Don't wait for a fine to find out you're non-compliant.</h2>
+    <p>Get your free compliance checklist in under 2 minutes.</p>
+    <button class="btn btn-primary" onclick="show('p-addprop',null)" style="font-size:16px;padding:12px 28px;">Get my free checklist →</button>
+    <div style="margin-top:16px;font-size:13px;color:#475569;">Free forever · No credit card required</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════
+     PAGE 2: CITY — BARCELONA
+═══════════════════════════════ -->
+<div id="p-city" class="page">
+  <div class="city-hero">
+    <div class="city-hero-inner">
+      <div class="city-breadcrumb"><a onclick="show('p-landing',null)">← All cities</a></div>
+      <div class="city-meta">
+        <h1 style="margin:0">🇪🇸 Barcelona STR Compliance Guide</h1>
+        <span class="badge badge-red">Strict</span>
+        <span class="badge" style="background:#fde68a;color:#92400e;">5 requirements</span>
+      </div>
+      <p>Barcelona has some of the strictest short-term rental rules in Europe. A HUTB license is required to legally rent an entire apartment. New licenses are no longer issued. Fines reach €90,000.</p>
+      <div class="last-review">📅 Last verified: June 2026 · <a style="color:#b45309;cursor:pointer;">View official sources</a></div>
+    </div>
+  </div>
+
+  <div class="city-content">
+    <div class="key-facts">
+      <h3>⚡ Key facts in 60 seconds</h3>
+      <ul>
+        <li>You <strong>must have a HUTB license</strong> to rent an entire apartment short-term. No new licenses have been issued since 2014.</li>
+        <li>All existing HUTB licenses <strong>expire in November 2028</strong> and will not be renewed.</li>
+        <li>You must <strong>register every guest's ID</strong> with the Mossos d'Esquadra police within 24 hours of check-in. Every. Single. Guest.</li>
+        <li>Tourist tax is collected quarterly. Airbnb handles it automatically — but direct bookings, you handle manually.</li>
+        <li>Your HUTB number must be displayed on every listing. Fines for non-display are part of the €90,000 regime.</li>
+      </ul>
+    </div>
+
+    <div class="compliance-table">
+      <div class="ct-header">
+        <div>Requirement</div>
+        <div>Category</div>
+        <div>Penalty</div>
+        <div>Difficulty</div>
+      </div>
+      <div class="ct-row" onclick="show('p-checklist',null)">
+        <div><div class="ct-title">HUTB Tourist Housing License</div><div class="ct-subtitle">Annual renewal by November 30 · CRITICAL</div></div>
+        <div><span class="badge badge-blue">Permit</span></div>
+        <div><span class="badge badge-red">Up to €90,000</span></div>
+        <div><div class="ct-diff"><div class="ct-diff-dot" style="background:#dc2626"></div><div class="ct-diff-dot" style="background:#dc2626"></div><div class="ct-diff-dot" style="background:#dc2626"></div></div><div style="font-size:11px;color:#64748b;margin-top:3px">Complex</div></div>
+      </div>
+      <div class="ct-row" onclick="show('p-checklist',null)">
+        <div><div class="ct-title">Display HUTB Number on Listings</div><div class="ct-subtitle">Must appear on Airbnb, Booking.com, and all ads</div></div>
+        <div><span class="badge badge-gray">Display</span></div>
+        <div><span class="badge badge-red">Part of €90K regime</span></div>
+        <div><div class="ct-diff"><div class="ct-diff-dot" style="background:#16a34a"></div><div class="ct-diff-dot" style="background:#d1d5db"></div><div class="ct-diff-dot" style="background:#d1d5db"></div></div><div style="font-size:11px;color:#64748b;margin-top:3px">Easy</div></div>
+      </div>
+      <div class="ct-row" onclick="show('p-checklist',null)">
+        <div><div class="ct-title">Register Guests with Police (GES)</div><div class="ct-subtitle">Within 24 hours of each guest check-in · Event-based</div></div>
+        <div><span class="badge badge-orange">Guest report</span></div>
+        <div><span class="badge badge-red">€30,000–€600,000</span></div>
+        <div><div class="ct-diff"><div class="ct-diff-dot" style="background:#dc2626"></div><div class="ct-diff-dot" style="background:#dc2626"></div><div class="ct-diff-dot" style="background:#d1d5db"></div></div><div style="font-size:11px;color:#64748b;margin-top:3px">Moderate</div></div>
+      </div>
+      <div class="ct-row" onclick="show('p-checklist',null)">
+        <div><div class="ct-title">Collect &amp; Remit Tourist Tax (Taxa Turística)</div><div class="ct-subtitle">Quarterly filing · Airbnb handles automatically</div></div>
+        <div><span class="badge badge-yellow">Tax</span></div>
+        <div><span class="badge badge-orange">Tax + surcharges</span></div>
+        <div><div class="ct-diff"><div class="ct-diff-dot" style="background:#dc2626"></div><div class="ct-diff-dot" style="background:#d1d5db"></div><div class="ct-diff-dot" style="background:#d1d5db"></div></div><div style="font-size:11px;color:#64748b;margin-top:3px">Moderate</div></div>
+      </div>
+      <div class="ct-row" onclick="show('p-checklist',null)">
+        <div><div class="ct-title">Habitability Certificate (Cèdula d'habitabilitat)</div><div class="ct-subtitle">Required to obtain and renew HUTB · Valid 15 years</div></div>
+        <div><span class="badge badge-blue">Permit</span></div>
+        <div><span class="badge badge-orange">Cannot renew HUTB without it</span></div>
+        <div><div class="ct-diff"><div class="ct-diff-dot" style="background:#dc2626"></div><div class="ct-diff-dot" style="background:#dc2626"></div><div class="ct-diff-dot" style="background:#d1d5db"></div></div><div style="font-size:11px;color:#64748b;margin-top:3px">Moderate</div></div>
+      </div>
+    </div>
+
+    <div class="city-cta-bar">
+      <div>
+        <h3>Track your Barcelona compliance automatically</h3>
+        <p>Create a free account, add your property, and get a personalized checklist with deadline reminders.</p>
+      </div>
+      <button class="btn btn-primary" onclick="show('p-addprop',null)" style="white-space:nowrap">Get my checklist →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════
+     PAGE 3: DASHBOARD
+═══════════════════════════════ -->
+<div id="p-dashboard" class="page">
+  <div class="app-shell">
+    <div class="sidebar">
+      <div class="sidebar-logo"><div class="lname">Host<span>Compliant</span></div></div>
+      <div class="sidebar-user"><div class="uname">Isabel García</div><div class="uplan">Host Plan · 2 properties</div></div>
+      <div class="nav-item active"><span class="icon">🏠</span> Overview</div>
+      <div class="nav-item" onclick="show('p-checklist',null)"><span class="icon">🏢</span> Properties</div>
+      <div class="nav-item"><span class="icon">🔔</span> Alerts <span class="badge badge-red" style="margin-left:auto;font-size:10px;padding:1px 6px">2</span></div>
+      <div class="nav-item"><span class="icon">📅</span> Calendar</div>
+      <div class="nav-item"><span class="icon">⚙️</span> Settings</div>
+      <div style="flex:1"></div>
+      <div class="sidebar-bottom">
+        <div class="upgrade-box">
+          <p>Unlock unlimited properties</p>
+          <button onclick="show('p-pricing',null)">Upgrade to Pro →</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="main-content">
+      <div class="page-title">Good morning, Isabel 👋</div>
+      <div class="page-subtitle">Here's your compliance overview across 2 properties.</div>
+
+      <div class="stat-cards">
+        <div class="stat-card"><div class="sc-label">Overall score</div><div class="sc-value sc-amber">60%</div><div class="sc-sub">3 of 5 items complete</div></div>
+        <div class="stat-card"><div class="sc-label">Overdue</div><div class="sc-value sc-red">1</div><div class="sc-sub">Guest registration (BCN)</div></div>
+        <div class="stat-card"><div class="sc-label">Due soon</div><div class="sc-value sc-amber">1</div><div class="sc-sub">Tax filing in 15 days</div></div>
+        <div class="stat-card"><div class="sc-label">Completed</div><div class="sc-value sc-green">3</div><div class="sc-sub">Items marked done</div></div>
+      </div>
+
+      <div class="dash-grid">
+        <div>
+          <!-- Properties -->
+          <div class="section-title">🏢 My Properties</div>
+          <div class="property-card" style="margin-bottom:12px" onclick="show('p-checklist',null)">
+            <div class="pc-top">
+              <div><div class="pc-name">Apartment Raval</div><div class="pc-city">🇪🇸 Barcelona · Entire apartment</div></div>
+              <span class="badge badge-red">1 overdue</span>
+            </div>
+            <div class="pc-progress">
+              <div class="pc-progress-label"><span>Compliance</span><span>2 / 5 complete</span></div>
+              <div class="progress-bar"><div class="progress-fill warn" style="width:40%"></div></div>
+            </div>
+            <div class="pc-footer">
+              <span class="badge badge-red">Guest registration overdue</span>
+              <span class="badge badge-orange">Tax filing due Jul 15</span>
+            </div>
+          </div>
+          <div class="property-card" style="margin-bottom:20px">
+            <div class="pc-top">
+              <div><div class="pc-name">Studio Gràcia</div><div class="pc-city">🇪🇸 Barcelona · Private room</div></div>
+              <span class="badge badge-green">All done</span>
+            </div>
+            <div class="pc-progress">
+              <div class="pc-progress-label"><span>Compliance</span><span>3 / 3 complete</span></div>
+              <div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div>
+            </div>
+            <div class="pc-footer">
+              <span class="badge badge-green">Fully compliant</span>
+            </div>
+          </div>
+
+          <!-- Overdue -->
+          <div class="section-title">🚨 Overdue Items</div>
+          <div class="overdue-item">
+            <div class="oi-icon">⚠️</div>
+            <div class="oi-body">
+              <div class="oi-prop">Apartment Raval · Barcelona</div>
+              <div class="oi-title">Register guests with Mossos d'Esquadra (GES)</div>
+              <div class="oi-days">This is an ongoing requirement · Last check-in not registered</div>
+            </div>
+            <div class="oi-action"><button onclick="show('p-checklist',null)">Fix now →</button></div>
+          </div>
+
+          <!-- Upcoming -->
+          <div class="section-title" style="margin-top:20px">⏰ Upcoming Deadlines</div>
+          <div class="deadline-item">
+            <div class="di-left">
+              <div class="di-prop">Apartment Raval · Barcelona</div>
+              <div class="di-title">Quarterly tourist tax filing</div>
+              <div class="di-date">Due: July 15, 2026</div>
+            </div>
+            <div class="di-right"><div class="days" style="color:#ea580c">15 days</div></div>
+          </div>
+          <div class="deadline-item">
+            <div class="di-left">
+              <div class="di-prop">Apartment Raval · Barcelona</div>
+              <div class="di-title">HUTB annual license renewal</div>
+              <div class="di-date">Due: November 30, 2026</div>
+            </div>
+            <div class="di-right"><div class="days" style="color:#16a34a">153 days</div></div>
+          </div>
+        </div>
+
+        <!-- Alerts sidebar -->
+        <div>
+          <div class="section-title">🔔 Recent Alerts</div>
+          <div class="alert-item">
+            <div class="ai-top"><span class="badge badge-red">Critical</span><span style="font-size:11px;color:#94a3b8">Barcelona · 3 days ago</span></div>
+            <div class="ai-title">Barcelona HUTB licenses will not be renewed after 2028</div>
+            <div class="ai-summary">The city council confirmed that all HUTB tourist housing licenses will expire definitively in November 2028. No renewals will be granted. Plan ahead.</div>
+          </div>
+          <div class="alert-item">
+            <div class="ai-top"><span class="badge badge-orange">Warning</span><span style="font-size:11px;color:#94a3b8">Barcelona · 12 days ago</span></div>
+            <div class="ai-title">Guest reporting checks intensified in Q3 2026</div>
+            <div class="ai-summary">The Mossos d'Esquadra announced increased spot-checks on tourist accommodation guest registration compliance in Eixample and Raval districts.</div>
+          </div>
+          <div class="alert-item">
+            <div class="ai-top"><span class="badge badge-blue">Info</span><span style="font-size:11px;color:#94a3b8">Barcelona · 1 month ago</span></div>
+            <div class="ai-title">Q2 tourist tax rate unchanged for 2026</div>
+            <div class="ai-summary">The Generalitat de Catalunya confirmed the taxa turística rate remains at €1.50–€4.00 per person per night for 2026.</div>
+          </div>
+
+          <div style="margin-top:20px">
+            <div class="section-title">📋 Quick Actions</div>
+            <div style="display:flex;flex-direction:column;gap:8px;">
+              <button class="btn btn-outline" style="width:100%;justify-content:center" onclick="show('p-addprop',null)">+ Add property</button>
+              <button class="btn btn-outline" style="width:100%;justify-content:center" onclick="show('p-checklist',null)">View compliance checklist</button>
+              <button class="btn btn-outline" style="width:100%;justify-content:center" onclick="show('p-pricing',null)">Upgrade plan</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════
+     PAGE 4: COMPLIANCE CHECKLIST
+═══════════════════════════════ -->
+<div id="p-checklist" class="page">
+  <div class="app-shell">
+    <div class="sidebar">
+      <div class="sidebar-logo"><div class="lname">Host<span>Compliant</span></div></div>
+      <div class="sidebar-user"><div class="uname">Isabel García</div><div class="uplan">Host Plan · 2 properties</div></div>
+      <div class="nav-item" onclick="show('p-dashboard',null)"><span class="icon">🏠</span> Overview</div>
+      <div class="nav-item active"><span class="icon">🏢</span> Properties</div>
+      <div class="nav-item"><span class="icon">🔔</span> Alerts</div>
+      <div class="nav-item"><span class="icon">📅</span> Calendar</div>
+      <div class="nav-item"><span class="icon">⚙️</span> Settings</div>
+    </div>
+
+    <div style="flex:1;overflow-y:auto;">
+      <div class="checklist-header">
+        <div class="ch-left">
+          <h2>🏢 Apartment Raval</h2>
+          <div class="ch-meta">
+            <span>🇪🇸 Barcelona</span>
+            <span>·</span>
+            <span>Entire apartment</span>
+            <span>·</span>
+            <span>Airbnb, Booking.com</span>
+          </div>
+        </div>
+        <div class="ch-right">
+          <div class="score-ring-wrap">
+            <div>
+              <div style="font-size:12px;color:#64748b;text-align:right">Compliance</div>
+              <div style="font-size:11px;color:#94a3b8;text-align:right">2 of 5 complete</div>
+            </div>
+            <div class="score-ring">
+              <svg width="72" height="72" viewBox="0 0 72 72">
+                <circle cx="36" cy="36" r="28" fill="none" stroke="#f1f5f9" stroke-width="8"/>
+                <circle cx="36" cy="36" r="28" fill="none" stroke="#f59e0b" stroke-width="8" stroke-dasharray="175.9" stroke-dashoffset="105.5" stroke-linecap="round"/>
+              </svg>
+              <div class="pct">40%</div>
+            </div>
+          </div>
+          <button class="btn btn-outline btn-sm">📄 Export PDF</button>
+          <button class="btn btn-outline btn-sm">⚙️ Edit property</button>
+        </div>
+      </div>
+
+      <div class="filter-tabs">
+        <div class="ft on">All (5)</div>
+        <div class="ft">🔴 Overdue (1)</div>
+        <div class="ft">⏳ Pending (2)</div>
+        <div class="ft">✅ Done (2)</div>
+        <div class="ft">N/A (0)</div>
+      </div>
+
+      <div class="checklist-body">
+
+        <!-- OVERDUE -->
+        <div class="cat-section">
+          <div class="cat-label">🔴 Overdue</div>
+          <div class="ci-card overdue open">
+            <div class="ci-main" onclick="toggleItem(this)">
+              <div class="ci-status-dot sd-overdue"></div>
+              <div class="ci-body">
+                <div class="ci-title">Register guests with Mossos d'Esquadra (GES)</div>
+                <div class="ci-desc">Required within 24 hours of every guest check-in · Spanish law Decreto 155/2012</div>
+              </div>
+              <div class="ci-right">
+                <span class="badge badge-red">OVERDUE</span>
+                <span class="badge badge-red" style="font-size:11px">Fine: €30K–€600K</span>
+                <div class="ci-arrow">›</div>
+              </div>
+            </div>
+            <div class="ci-expanded">
+              <div class="ci-exp-grid">
+                <div class="ci-exp-section">
+                  <h4>How to comply</h4>
+                  <ol class="ci-steps">
+                    <li data-n="1">Register at the Mossos d'Esquadra GES portal: ges.mossos.gencat.cat</li>
+                    <li data-n="2">For each guest check-in: enter full name, ID/passport number, nationality, dates of stay</li>
+                    <li data-n="3">Submit within 24 hours of arrival. Keep records for 3 years.</li>
+                    <li data-n="4">Guests under 14 can be registered under a parent or guardian's entry.</li>
+                  </ol>
+                </div>
+                <div class="ci-exp-section">
+                  <h4>Why this matters</h4>
+                  <p style="margin-bottom:10px">Spanish law requires all tourist accommodation to report guest identity to police. Barcelona inspectors have intensified checks in 2026. Non-compliance is classified as a <strong>serious infraction</strong> with fines starting at €30,000.</p>
+                  <p style="font-size:12px;color:#94a3b8">💡 Tip: Tools like Chekin or Hospitable can automate this for every booking.</p>
+                </div>
+              </div>
+              <div class="ci-exp-actions">
+                <a>↗ Open GES portal</a>
+                <a>↗ Official source (Gencat)</a>
+                <div style="flex:1"></div>
+                <button class="in-progress-btn">Mark In Progress</button>
+                <button class="mark-done-btn" onclick="openModal()">Mark as Done ✓</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PERMITS -->
+        <div class="cat-section">
+          <div class="cat-label">🪪 Permits</div>
+
+          <div class="ci-card done">
+            <div class="ci-main" onclick="toggleItem(this)">
+              <div class="ci-status-dot sd-done"></div>
+              <div class="ci-body">
+                <div class="ci-title">HUTB Tourist Housing License</div>
+                <div class="ci-desc">Annual renewal by November 30 · License #HUT/000123/2018</div>
+              </div>
+              <div class="ci-right">
+                <span class="badge badge-green">Done</span>
+                <div class="ci-deadline">
+                  <div class="ci-dl-label">Next renewal</div>
+                  <div class="ci-dl-date" style="color:#16a34a">Nov 30, 2026</div>
+                </div>
+                <div class="ci-arrow">›</div>
+              </div>
+            </div>
+            <div class="ci-expanded" style="display:none">
+              <div style="display:flex;align-items:center;gap:12px;padding:8px 0">
+                <span class="badge badge-green">✓ Completed June 12, 2026</span>
+                <span style="font-size:13px;color:#64748b">Renewed via Generalitat portal. Confirmation saved.</span>
+                <div style="flex:1"></div>
+                <button class="btn btn-outline btn-sm">📎 View document</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="ci-card done">
+            <div class="ci-main" onclick="toggleItem(this)">
+              <div class="ci-status-dot sd-done"></div>
+              <div class="ci-body">
+                <div class="ci-title">Habitability Certificate (Cèdula d'habitabilitat)</div>
+                <div class="ci-desc">Valid until 2031 · Required for HUTB renewal</div>
+              </div>
+              <div class="ci-right">
+                <span class="badge badge-green">Done</span>
+                <div class="ci-deadline">
+                  <div class="ci-dl-label">Expires</div>
+                  <div class="ci-dl-date" style="color:#16a34a">Mar 2031</div>
+                </div>
+                <div class="ci-arrow">›</div>
+              </div>
+            </div>
+            <div class="ci-expanded" style="display:none">
+              <span class="badge badge-green">✓ On file</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAX -->
+        <div class="cat-section">
+          <div class="cat-label">💶 Tax Registration</div>
+          <div class="ci-card soon">
+            <div class="ci-main" onclick="toggleItem(this)">
+              <div class="ci-status-dot sd-soon"></div>
+              <div class="ci-body">
+                <div class="ci-title">Quarterly tourist tax filing (Taxa Turística)</div>
+                <div class="ci-desc">Q2 2026 filing via ATC (Agència Tributària de Catalunya)</div>
+              </div>
+              <div class="ci-right">
+                <span class="badge badge-orange">Due soon</span>
+                <div class="ci-deadline">
+                  <div class="ci-dl-label">Due in</div>
+                  <div class="ci-dl-date" style="color:#ea580c">15 days · Jul 15</div>
+                </div>
+                <div class="ci-arrow">›</div>
+              </div>
+            </div>
+            <div class="ci-expanded" style="display:none">
+              <p style="font-size:13px;color:#374151">Verify Airbnb is collecting and remitting this automatically. For any direct bookings, file manually at atc.gencat.cat.</p>
+              <div class="ci-exp-actions">
+                <a>↗ ATC portal</a>
+                <div style="flex:1"></div>
+                <button class="mark-done-btn" onclick="openModal()">Mark as Done ✓</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- DISPLAY -->
+        <div class="cat-section">
+          <div class="cat-label">🪧 Display Requirements</div>
+          <div class="ci-card pending">
+            <div class="ci-main" onclick="toggleItem(this)">
+              <div class="ci-status-dot sd-pending"></div>
+              <div class="ci-body">
+                <div class="ci-title">Display HUTB number on all listings</div>
+                <div class="ci-desc">Must appear on Airbnb listing, Booking.com, and any other rental platform</div>
+              </div>
+              <div class="ci-right">
+                <span class="badge badge-gray">Not started</span>
+                <div class="ci-deadline">
+                  <div class="ci-dl-label">Deadline</div>
+                  <div class="ci-dl-date" style="color:#94a3b8">Immediate</div>
+                </div>
+                <div class="ci-arrow">›</div>
+              </div>
+            </div>
+            <div class="ci-expanded" style="display:none">
+              <ol class="ci-steps">
+                <li data-n="1">On Airbnb: Listing → Edit → Policies and rules → Add registration number (HUT/000123/2018)</li>
+                <li data-n="2">On Booking.com: Property → Policies → License number field</li>
+                <li data-n="3">Verify it appears on your public listing page</li>
+              </ol>
+              <div class="ci-exp-actions">
+                <div style="flex:1"></div>
+                <button class="mark-done-btn" onclick="openModal()">Mark as Done ✓</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════
+     PAGE 5: ADD PROPERTY
+═══════════════════════════════ -->
+<div id="p-addprop" class="page">
+  <nav class="lp-nav">
+    <div class="logo">Host<span>Compliant</span></div>
+    <button class="btn btn-outline btn-sm" onclick="show('p-landing',null)">← Back</button>
+  </nav>
+
+  <div class="addprop-wrap">
+    <div class="steps-indicator">
+      <div class="si-step">
+        <div class="si-circle done">✓</div>
+        <div class="si-label">Account</div>
+      </div>
+      <div class="si-sep done"></div>
+      <div class="si-step">
+        <div class="si-circle active">2</div>
+        <div class="si-label active">Property</div>
+      </div>
+      <div class="si-sep"></div>
+      <div class="si-step">
+        <div class="si-circle">3</div>
+        <div class="si-label">Checklist</div>
+      </div>
+    </div>
+
+    <div class="form-card">
+      <h2>Tell us about your property</h2>
+      <div class="fc-sub">We'll generate a personalized compliance checklist based on your city and property type.</div>
+
+      <div class="field">
+        <label>Property nickname</label>
+        <input type="text" value="Apartment Raval" placeholder="e.g. Apartment Raval, Beach Studio">
+      </div>
+
+      <div class="field">
+        <label>City</label>
+        <select>
+          <option>🇪🇸 Barcelona, Spain</option>
+          <option>🇫🇷 Paris, France</option>
+          <option>🇳🇱 Amsterdam, Netherlands</option>
+          <option>🇵🇹 Lisbon, Portugal</option>
+          <option>🇮🇹 Rome, Italy</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>Property type</label>
+        <div class="type-grid">
+          <div class="type-option selected">
+            <div class="to-icon">🏠</div>
+            <div class="to-label">Entire apartment / house</div>
+            <div class="to-desc">You rent the whole place</div>
+          </div>
+          <div class="type-option">
+            <div class="to-icon">🛏️</div>
+            <div class="to-label">Private room</div>
+            <div class="to-desc">Room in your primary home</div>
+          </div>
+          <div class="type-option">
+            <div class="to-icon">🍳</div>
+            <div class="to-label">B&B</div>
+            <div class="to-desc">Bed and breakfast</div>
+          </div>
+          <div class="type-option">
+            <div class="to-icon">🏢</div>
+            <div class="to-label">Multiple units</div>
+            <div class="to-desc">Building / portfolio</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Listed on which platforms?</label>
+        <div class="platform-grid">
+          <div class="platform-opt sel">Airbnb</div>
+          <div class="platform-opt sel">Booking.com</div>
+          <div class="platform-opt">Vrbo</div>
+          <div class="platform-opt">Direct bookings</div>
+          <div class="platform-opt">Other</div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="preview-box">
+        <h4>✅ Based on your answers, we'll track 5 compliance items:</h4>
+        <div class="preview-item">🪪 HUTB tourist housing license (annual renewal)</div>
+        <div class="preview-item">👮 Guest registration with Mossos d'Esquadra (per check-in)</div>
+        <div class="preview-item">💶 Quarterly tourist tax filing (ATC)</div>
+        <div class="preview-item">🪧 Display HUTB number on all listings</div>
+        <div class="preview-item">📄 Habitability certificate (cèdula d'habitabilitat)</div>
+      </div>
+
+      <button class="btn btn-primary" style="width:100%;justify-content:center;font-size:15px;padding:13px" onclick="show('p-checklist',null)">
+        Create my compliance checklist →
+      </button>
+      <div style="text-align:center;font-size:12px;color:#94a3b8;margin-top:10px">Takes 30 seconds. Free to start.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════
+     PAGE 6: PRICING
+═══════════════════════════════ -->
+<div id="p-pricing" class="page">
+  <nav class="lp-nav">
+    <div class="logo">Host<span>Compliant</span></div>
+    <div class="lp-nav-links">
+      <a onclick="show('p-city',null)">Cities</a>
+      <button class="btn btn-outline btn-sm">Log in</button>
+      <button class="btn btn-primary btn-sm" onclick="show('p-addprop',null)">Get started free →</button>
+    </div>
+  </nav>
+
+  <div class="pricing-hero">
+    <h1>Simple pricing. No surprises.</h1>
+    <p>Start free forever. Upgrade for deadline reminders and regulatory alerts when you need them.</p>
+    <div class="billing-toggle">
+      <div class="bt-opt on">Monthly</div>
+      <div class="bt-opt">Annual <span class="save-badge">Save 2 months</span></div>
+    </div>
+  </div>
+
+  <div class="pricing-cards">
+    <div class="pc-wrap">
+      <div class="price-card">
+        <div class="pc-tier">Free</div>
+        <div class="pc-price"><span class="amount">€0</span></div>
+        <div class="pc-tagline">Always free. No credit card.</div>
+        <ul class="feature-list">
+          <li><span class="fck">✓</span> 1 property</li>
+          <li><span class="fck">✓</span> Full compliance checklist</li>
+          <li><span class="fck">✓</span> Status tracking</li>
+          <li><span class="fx">✗</span> <span style="color:#94a3b8">Email reminders</span></li>
+          <li><span class="fx">✗</span> <span style="color:#94a3b8">Regulatory alerts</span></li>
+          <li><span class="fx">✗</span> <span style="color:#94a3b8">Document storage</span></li>
+        </ul>
+        <button class="pc-cta outline" onclick="show('p-addprop',null)">Get started free</button>
+      </div>
+    </div>
+
+    <div class="pc-wrap">
+      <div class="price-card">
+        <div class="pc-tier">Solo</div>
+        <div class="pc-price"><span class="amount">€9</span><span class="per">/month</span></div>
+        <div class="pc-tagline">For single-property hosts.</div>
+        <ul class="feature-list">
+          <li><span class="fck">✓</span> 1 property</li>
+          <li><span class="fck">✓</span> Full compliance checklist</li>
+          <li><span class="fck">✓</span> Status tracking</li>
+          <li><span class="fck">✓</span> Email reminders (90/30/7/1 day)</li>
+          <li><span class="fck">✓</span> Regulatory alerts</li>
+          <li><span class="fck">✓</span> Document storage (100MB)</li>
+        </ul>
+        <button class="pc-cta outline" onclick="show('p-addprop',null)">Start with Solo</button>
+      </div>
+    </div>
+
+    <div class="pc-wrap">
+      <div class="popular-label">⭐ Most popular</div>
+      <div class="price-card featured">
+        <div class="pc-tier" style="color:#2563eb">Host</div>
+        <div class="pc-price"><span class="amount">€19</span><span class="per">/month</span></div>
+        <div class="pc-tagline">For hosts with multiple properties.</div>
+        <ul class="feature-list">
+          <li><span class="fck">✓</span> <strong>Up to 3 properties</strong></li>
+          <li><span class="fck">✓</span> Full compliance checklist</li>
+          <li><span class="fck">✓</span> Status tracking</li>
+          <li><span class="fck">✓</span> Email reminders (90/30/7/1 day)</li>
+          <li><span class="fck">✓</span> Regulatory alerts (priority)</li>
+          <li><span class="fck">✓</span> Document storage (250MB)</li>
+        </ul>
+        <button class="pc-cta primary" onclick="show('p-addprop',null)">Start with Host</button>
+      </div>
+    </div>
+
+    <div class="pc-wrap">
+      <div class="price-card">
+        <div class="pc-tier">Professional</div>
+        <div class="pc-price"><span class="amount">€49</span><span class="per">/month</span></div>
+        <div class="pc-tagline">For property managers and agencies.</div>
+        <ul class="feature-list">
+          <li><span class="fck">✓</span> <strong>Unlimited properties</strong></li>
+          <li><span class="fck">✓</span> Full compliance checklist</li>
+          <li><span class="fck">✓</span> Status tracking</li>
+          <li><span class="fck">✓</span> Email reminders</li>
+          <li><span class="fck">✓</span> Regulatory alerts (early access)</li>
+          <li><span class="fck">✓</span> Document storage (1GB)</li>
+          <li><span class="fck">✓</span> PDF compliance report export</li>
+          <li><span class="fck">✓</span> Multi-city coverage</li>
+        </ul>
+        <button class="pc-cta outline" onclick="show('p-addprop',null)">Start with Pro</button>
+      </div>
+    </div>
+  </div>
+
+  <div style="background:#fff;padding:32px;text-align:center;border-top:1px solid #f1f5f9;">
+    <div style="display:flex;justify-content:center;gap:48px;flex-wrap:wrap;">
+      <div style="text-align:center"><div style="font-size:20px;margin-bottom:4px">🔒</div><div style="font-size:13px;font-weight:700">GDPR Compliant</div><div style="font-size:12px;color:#64748b">EU data storage</div></div>
+      <div style="text-align:center"><div style="font-size:20px;margin-bottom:4px">↩️</div><div style="font-size:13px;font-weight:700">Cancel anytime</div><div style="font-size:12px;color:#64748b">No lock-in</div></div>
+      <div style="text-align:center"><div style="font-size:20px;margin-bottom:4px">📧</div><div style="font-size:13px;font-weight:700">Email support</div><div style="font-size:12px;color:#64748b">Reply within 24h</div></div>
+      <div style="text-align:center"><div style="font-size:20px;margin-bottom:4px">⚖️</div><div style="font-size:13px;font-weight:700">Not legal advice</div><div style="font-size:12px;color:#64748b">Informational only</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- "Mark as Done" Modal -->
+<div class="modal-overlay" id="modal" onclick="if(event.target===this)closeModal()">
+  <div class="modal">
+    <h3>Mark as Done</h3>
+    <div class="msub">Register guests with Mossos d'Esquadra (GES)</div>
+    <div class="field">
+      <label>Completed on</label>
+      <input type="date" value="2026-06-30">
+    </div>
+    <div class="field">
+      <label>Notes (optional)</label>
+      <input type="text" placeholder="e.g. Registered via GES portal — confirmation #XXX">
+    </div>
+    <div class="field">
+      <label>Upload document (optional)</label>
+      <div style="border:2px dashed #d1d5db;border-radius:8px;padding:20px;text-align:center;cursor:pointer;color:#94a3b8;font-size:13px;">
+        📎 Drag & drop or click to upload · PDF, JPG, PNG · Max 10MB
+      </div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-outline" onclick="closeModal()">Cancel</button>
+      <button class="btn btn-primary" onclick="closeModal()">Mark as Done ✓</button>
+    </div>
+  </div>
+</div>
+
+<script>
+function show(id, btn) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+  if (btn) {
+    document.querySelectorAll('#nav button').forEach(b => b.classList.remove('on'));
+    btn.classList.add('on');
+  }
+  window.scrollTo(0,0);
+}
+
+function toggleItem(el) {
+  const card = el.closest('.ci-card');
+  card.classList.toggle('open');
+  const expanded = card.querySelector('.ci-expanded');
+  if (expanded) {
+    expanded.style.display = card.classList.contains('open') ? 'block' : 'none';
+  }
+}
+
+function openModal() { document.getElementById('modal').classList.add('show'); }
+function closeModal() { document.getElementById('modal').classList.remove('show'); }
+
+// Type option selection
+document.querySelectorAll('.type-option').forEach(opt => {
+  opt.addEventListener('click', () => {
+    opt.closest('.type-grid').querySelectorAll('.type-option').forEach(o => o.classList.remove('selected'));
+    opt.classList.add('selected');
+  });
+});
+
+// Platform toggle
+document.querySelectorAll('.platform-opt').forEach(opt => {
+  opt.addEventListener('click', () => opt.classList.toggle('sel'));
+});
+
+// Billing toggle
+document.querySelectorAll('.bt-opt').forEach(opt => {
+  opt.addEventListener('click', () => {
+    document.querySelectorAll('.bt-opt').forEach(o => o.classList.remove('on'));
+    opt.classList.add('on');
+  });
+});
+
+// Filter tabs
+document.querySelectorAll('.filter-tabs .ft').forEach(tab => {
+  tab.addEventListener('click', () => {
+    tab.closest('.filter-tabs').querySelectorAll('.ft').forEach(t => t.classList.remove('on'));
+    tab.classList.add('on');
+  });
+});
+</script>
+</body>
+</html>
